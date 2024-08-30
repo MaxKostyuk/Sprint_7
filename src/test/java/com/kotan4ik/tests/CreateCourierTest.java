@@ -17,11 +17,6 @@ public class CreateCourierTest {
     private static final String CORRECT_PASSWORD = "myPassword";
     private static final String CORRECT_NAME = "originalName";
 
-    @BeforeAll
-    public static void setUp() {
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/api/v1/courier/";
-    }
-
     @AfterEach
     public void deleteCourier() {
         deleteCourierByLoginAndPassword(CORRECT_LOGIN, CORRECT_PASSWORD);
