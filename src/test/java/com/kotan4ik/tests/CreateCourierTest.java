@@ -1,14 +1,14 @@
 package com.kotan4ik.tests;
 
-import com.kotan4ik.utils.ApiErrorMessages;
-import io.restassured.RestAssured;
+
 import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.kotan4ik.requests.CourierApiRequests.createCourier;
 import static com.kotan4ik.requests.CourierApiRequests.deleteCourierByLoginAndPassword;
+import static com.kotan4ik.utils.ApiErrorMessages.*;
 import static com.kotan4ik.utils.Assertions.*;
 
 public class CreateCourierTest {
@@ -25,7 +25,7 @@ public class CreateCourierTest {
     @Test
     public void positiveTestShouldCreateCourier() {
         Response response = createCourier(CORRECT_LOGIN, CORRECT_PASSWORD, CORRECT_NAME);
-        compareResponseCode(response, 201);
+        compareResponseCode(response, HttpStatus.SC_CREATED);
         isSuccessfulResponseBody(response);
     }
 
@@ -33,22 +33,22 @@ public class CreateCourierTest {
     public void createTwoSameCouriersShouldReturn409Conflict() {
         createCourier(CORRECT_LOGIN, CORRECT_PASSWORD, CORRECT_NAME);
         Response response = createCourier(CORRECT_LOGIN, CORRECT_PASSWORD, CORRECT_NAME);
-        compareResponseCode(response, 409);
-        isErrorMessageCorrect(response, ApiErrorMessages.LOGIN_ALREADY_EXISTS);
+        compareResponseCode(response, HttpStatus.SC_CONFLICT);
+        isErrorMessageCorrect(response, LOGIN_ALREADY_EXISTS);
 
     }
 
     @Test
     public void createCourierWithoutLoginShouldReturn400BadRequest() {
         Response response = createCourier(null, CORRECT_PASSWORD, CORRECT_NAME);
-        compareResponseCode(response, 400);
-        isErrorMessageCorrect(response, ApiErrorMessages.NOT_ENOUGHT_DATA);
+        compareResponseCode(response, HttpStatus.SC_BAD_REQUEST);
+        isErrorMessageCorrect(response, CREATE_NOT_ENOUGH_DATA);
     }
 
     @Test
     public void createCourierWithoutPasswordShouldReturn400BadRequest() {
         Response response = createCourier(CORRECT_LOGIN, null, CORRECT_NAME);
-        compareResponseCode(response, 400);
-        isErrorMessageCorrect(response, ApiErrorMessages.NOT_ENOUGHT_DATA);
+        compareResponseCode(response, HttpStatus.SC_BAD_REQUEST);
+        isErrorMessageCorrect(response, CREATE_NOT_ENOUGH_DATA);
     }
 }
