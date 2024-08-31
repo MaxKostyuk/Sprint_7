@@ -1,55 +1,16 @@
 package com.kotan4ik.models;
 
-import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Courier {
     private String login;
     private String password;
     private String firstName;
-
-    public Courier(String login, String password, String name) {
-        this.login = login;
-        this.password = password;
-        this.firstName = name;
-    }
-
-    public Courier() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Courier courier = (Courier) o;
-        return Objects.equals(login, courier.login) && Objects.equals(password, courier.password) && Objects.equals(firstName, courier.firstName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(login, password, firstName);
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 }
