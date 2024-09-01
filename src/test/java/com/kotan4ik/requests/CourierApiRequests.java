@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 
 public class CourierApiRequests {
     static {
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/api/v1/courier/";
+        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/api/v1/";
     }
 
     @Step("Sending request to create courier with login {login}, password {password} and name {name}")
@@ -16,14 +16,14 @@ public class CourierApiRequests {
         Response response = RestAssured.given()
                 .header("Content-type", "application/json")
                 .body(courier)
-                .post();
+                .post("courier/");
         return response;
     }
 
     @Step("Sending request to delete courier with id {id}")
     public static Response deleteCourier(int id) {
         Response response = RestAssured.given()
-                .delete(String.valueOf(id));
+                .delete("courier/" + id);
         return response;
     }
 
@@ -42,7 +42,7 @@ public class CourierApiRequests {
         Response response = RestAssured.given()
                 .header("Content-type", "application/json")
                 .body(courier)
-                .post("login");
+                .post("courier/" + "login");
         return response;
     }
 }

@@ -56,7 +56,7 @@ public class LoginCourierTest {
     }
 
     @Test
-    public void negativeTestWithIncorrectPasswordShouldReturn() {
+    public void negativeTestWithIncorrectPasswordShouldReturn404NotFound() {
         Response response = loginCourier(CORRECT_LOGIN, CORRECT_PASSWORD + 1);
         compareResponseCode(response, HttpStatus.SC_NOT_FOUND);
         isErrorMessageCorrect(response, ACCOUNT_NOT_FOUND);
