@@ -32,6 +32,16 @@ public class Assertions {
         assert id > 0;
     }
 
+    @Step("Checking response body for create order contains track and track is positive")
+    public static void isSuccessfulCreateOrderBody(Response response) {
+        response.then()
+                .body("$", not(empty()))
+                .body("$", aMapWithSize(1))
+                .body("track", notNullValue());
+        int id = response.then().extract().path("track");
+        assert id > 0;
+    }
+
     @Step("Checking error message equals {expectedMessage}")
     public static void isErrorMessageCorrect(Response response, String expectedMessage) {
         response.then()
