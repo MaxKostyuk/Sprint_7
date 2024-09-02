@@ -16,15 +16,6 @@ import static com.kotan4ik.utils.Assertions.isSuccessfulCreateOrderBody;
 
 public class CreateOrderTest {
 
-    public static final String CORRECT_FIRST_NAME = "Ivan";
-    public static final String CORRECT_LAST_NAME = "Ivanov";
-    public static final String CORRECT_ADDRESS = "Manezhnaya st, 2-10";
-    public static final String CORRECT_SUBWAY_STATION = "Ploshad Revolutsii";
-    public static final String CORRECT_PHONE = "+78007009329";
-    public static final String CORRECT_RENT_TIME = "100";
-    public static final String CORRECT_DELIVERY_DATE = "2024-10-30";
-    public static final String CORRECT_COMMENT = "Abiens, abi!";
-
     @ParameterizedTest
     @MethodSource("colorProvider")
     public void positiveTestShouldReturn200OkAndTrackNumber(List<String> colors) {
