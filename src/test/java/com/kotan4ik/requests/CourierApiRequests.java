@@ -27,6 +27,13 @@ public class CourierApiRequests {
         return response;
     }
 
+    @Step("Sending request to delete courier without id")
+    public static Response deleteCourier() {
+        Response response = RestAssured.given()
+                .delete("courier/");
+        return response;
+    }
+
     @Step("Deleting courier with login {login} and password {password}")
     public static void deleteCourierByLoginAndPassword(String login, String password) {
         Response response = loginCourier(login, password);
