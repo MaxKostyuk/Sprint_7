@@ -20,6 +20,16 @@ public class CourierApiRequests {
         return response;
     }
 
+    @Step("Sending login request with login {login} and password {password}")
+    public static Response loginCourier(String login, String password) {
+        Courier courier = new Courier(login, password, null);
+        Response response = RestAssured.given()
+                .header("Content-type", "application/json")
+                .body(courier)
+                .post("courier/" + "login");
+        return response;
+    }
+
     @Step("Sending request to delete courier with id {id}")
     public static Response deleteCourier(int id) {
         Response response = RestAssured.given()
@@ -36,20 +46,18 @@ public class CourierApiRequests {
 
     @Step("Deleting courier with login {login} and password {password}")
     public static void deleteCourierByLoginAndPassword(String login, String password) {
-        Response response = loginCourier(login, password);
-        if (response.statusCode() == 200) {
-            int id = Integer.parseInt(response.path("id").toString());
-            deleteCourier(id);
-        }
+        int id = getCourierIdByLoginAndPassword(login, password);
+        deleteCourier(id);
     }
 
-    @Step("Sending login request")
-    public static Response loginCourier(String login, String password) {
-        Courier courier = new Courier(login, password, null);
-        Response response = RestAssured.given()
-                .header("Content-type", "application/json")
-                .body(courier)
-                .post("courier/" + "login");
-        return response;
+    @Step("Getting courier id by login {login} and password {password}")
+    public static int getCourierIdByLoginAndPassword(String login, String password) {
+        Response response = loginCourier(login, password);
+        return parseLoginResponseToGetCourierId(response);
+    }
+
+    @Step("Parsing login courier body to get courier id")
+    public static int parseLoginResponseToGetCourierId(Response response) {
+        return Integer.parseInt(response.path("id").toString());
     }
 }

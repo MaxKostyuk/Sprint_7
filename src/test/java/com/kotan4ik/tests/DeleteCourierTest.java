@@ -2,6 +2,7 @@ package com.kotan4ik.tests;
 
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,8 +22,12 @@ public class DeleteCourierTest {
     @BeforeEach
     public void setUp() {
         createCourier(CORRECT_LOGIN, CORRECT_PASSWORD, CORRECT_NAME);
-        Response response = loginCourier(CORRECT_LOGIN, CORRECT_PASSWORD);
-        courierId = Integer.parseInt(response.path("id").toString());
+        courierId = getCourierIdByLoginAndPassword(CORRECT_LOGIN, CORRECT_PASSWORD);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        deleteCourier(courierId);
     }
 
     @Test
