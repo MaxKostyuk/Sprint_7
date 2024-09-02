@@ -18,4 +18,27 @@ public class OrderApiRequests {
                 .post("orders/");
         return response;
     }
+
+    @Step("Sending request to accept order {orderId} by courier {courierId}")
+    public static Response acceptOrder(int orderId, int courierId) {
+        Response response = RestAssured.given()
+                .log().all()
+                .queryParam("courierId", courierId)
+                .put("orders/accept/" + orderId);
+        return response;
+    }
+
+    @Step("Getting order by track number {track}")
+    public static Response getOrderByTrack(int track) {
+        Response response = RestAssured.given()
+                .queryParam("t", track)
+                .get("orders/" + "track");
+        return response;
+    }
+
+    @Step("Getting orderId by track number {track}")
+    public static int getOrderIdByTrack(int track) {
+        Response response = getOrderByTrack(track);
+        return Integer.parseInt(response.path("order.id").toString());
+    }
 }
