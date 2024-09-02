@@ -28,16 +28,8 @@ public class CreateOrderTest {
     @ParameterizedTest
     @MethodSource("colorProvider")
     public void positiveTestShouldReturn200OkAndTrackNumber(List<String> colors) {
-        Order order = new Order(CORRECT_FIRST_NAME,
-                CORRECT_LAST_NAME,
-                CORRECT_ADDRESS,
-                CORRECT_SUBWAY_STATION,
-                CORRECT_PHONE,
-                CORRECT_RENT_TIME,
-                CORRECT_DELIVERY_DATE,
-                CORRECT_COMMENT,
-                colors);
-
+        Order order = Order.createDefaultCorrectOrder();
+        order.setColor(colors);
         Response response = createOrder(order);
         compareResponseCode(response, HttpStatus.SC_CREATED);
         isSuccessfulCreateOrderBody(response);
