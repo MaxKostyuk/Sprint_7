@@ -39,6 +39,16 @@ public class OrderApiRequests {
     @Step("Getting orderId by track number {track}")
     public static int getOrderIdByTrack(int track) {
         Response response = getOrderByTrack(track);
+        return parseOrderIdFromGetOrderResponse(response);
+    }
+
+    @Step("Parsing order response to get order id")
+    private static int parseOrderIdFromGetOrderResponse(Response response) {
         return Integer.parseInt(response.path("order.id").toString());
+    }
+
+    @Step("Parsing track for create order body")
+    public static int parseTrack(Response response) {
+        return Integer.parseInt(response.path("track").toString());
     }
 }
