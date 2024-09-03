@@ -5,7 +5,7 @@ import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 
-import static com.kotan4ik.requests.OrderApiRequests.*;
+import static com.kotan4ik.requests.OrderApiMethods.*;
 import static com.kotan4ik.utils.ApiErrorMessages.ORDER_NOT_FOUND;
 import static com.kotan4ik.utils.ApiErrorMessages.SEARCH_NOT_ENOUGH_DATA;
 import static com.kotan4ik.utils.Assertions.*;

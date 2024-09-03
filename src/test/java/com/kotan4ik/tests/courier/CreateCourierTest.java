@@ -6,8 +6,8 @@ import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import static com.kotan4ik.requests.CourierApiRequests.createCourier;
-import static com.kotan4ik.requests.CourierApiRequests.deleteCourierByLoginAndPassword;
+import static com.kotan4ik.requests.CourierApiMethods.createCourier;
+import static com.kotan4ik.requests.CourierApiMethods.deleteCourierByLoginAndPassword;
 import static com.kotan4ik.utils.ApiErrorMessages.*;
 import static com.kotan4ik.utils.Assertions.*;
 

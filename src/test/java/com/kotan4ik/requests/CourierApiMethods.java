@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-public class CourierApiRequests {
+public class CourierApiMethods {
     static {
         RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/api/v1/";
     }

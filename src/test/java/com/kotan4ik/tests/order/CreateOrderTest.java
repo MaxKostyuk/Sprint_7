@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.kotan4ik.requests.OrderApiRequests.createOrder;
+import static com.kotan4ik.requests.OrderApiMethods.createOrder;
 import static com.kotan4ik.utils.Assertions.compareResponseCode;
 import static com.kotan4ik.utils.Assertions.isSuccessfulCreateOrderBody;
 

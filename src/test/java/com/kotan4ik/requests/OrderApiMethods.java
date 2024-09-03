@@ -6,7 +6,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class OrderApiRequests {
+public class OrderApiMethods {
     static {
         RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/api/v1/";
     }

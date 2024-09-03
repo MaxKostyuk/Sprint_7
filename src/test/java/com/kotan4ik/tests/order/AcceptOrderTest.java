@@ -7,8 +7,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.kotan4ik.requests.CourierApiRequests.*;
-import static com.kotan4ik.requests.OrderApiRequests.*;
+import static com.kotan4ik.requests.CourierApiMethods.*;
+import static com.kotan4ik.requests.OrderApiMethods.*;
 import static com.kotan4ik.utils.ApiErrorMessages.*;
 import static com.kotan4ik.utils.Assertions.*;
 

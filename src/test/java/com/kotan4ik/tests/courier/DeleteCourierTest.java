@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.kotan4ik.requests.CourierApiRequests.*;
+import static com.kotan4ik.requests.CourierApiMethods.*;
 import static com.kotan4ik.utils.ApiErrorMessages.COURIER_ID_NOT_FOUND;
 import static com.kotan4ik.utils.ApiErrorMessages.DELETE_NOT_ENOUGH_DATA;
 import static com.kotan4ik.utils.Assertions.*;
