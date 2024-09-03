@@ -1,4 +1,4 @@
-package com.kotan4ik.tests;
+package com.kotan4ik.tests.courier;
 
 
 import io.restassured.response.Response;

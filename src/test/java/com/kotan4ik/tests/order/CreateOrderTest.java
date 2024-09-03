@@ -1,4 +1,4 @@
-package com.kotan4ik.tests;
+package com.kotan4ik.tests.order;
 
 
 import com.kotan4ik.models.Order;

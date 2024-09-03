@@ -69,7 +69,7 @@ public class OrderApiRequests {
         return Integer.parseInt(response.path("order.id").toString());
     }
 
-    @Step("Parsing track for create order body")
+    @Step("Parsing create order body to get track")
     public static int parseTrack(Response response) {
         return Integer.parseInt(response.path("track").toString());
     }

@@ -1,4 +1,4 @@
-package com.kotan4ik.tests;
+package com.kotan4ik.tests.order;
 
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
