@@ -15,6 +15,5 @@ public class GetListOfOrdersTest {
         Response response = getOrderList(null, null, 1, null);
         compareResponseCode(response, HttpStatus.SC_OK);
         hasListOfOrdersBody(response);
-        System.out.println(response.body().asString());
     }
 }
