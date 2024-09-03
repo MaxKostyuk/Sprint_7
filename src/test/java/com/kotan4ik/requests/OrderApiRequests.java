@@ -4,6 +4,7 @@ import com.kotan4ik.models.Order;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class OrderApiRequests {
     static {
@@ -71,5 +72,20 @@ public class OrderApiRequests {
     @Step("Parsing track for create order body")
     public static int parseTrack(Response response) {
         return Integer.parseInt(response.path("track").toString());
+    }
+
+    @Step("Getting order list with courier id {courierId}, nearestStation {")
+    public static Response getOrderList(Integer courierId, int[] nearestStation, Integer limit, Integer page) {
+        RequestSpecification request = RestAssured.given();
+        if (courierId != null)
+            request.queryParam("courierId", courierId);
+        if (nearestStation != null)
+            request.queryParam("nearestStation", nearestStation);
+        if (limit != null)
+            request.queryParam("limit", limit);
+        if (page != null)
+            request.queryParam("page", page);
+        Response response = request.get("orders");
+        return response;
     }
 }

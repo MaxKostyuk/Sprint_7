@@ -58,4 +58,14 @@ public class Assertions {
                 .body("$", aMapWithSize(1))
                 .body("order", notNullValue());
     }
+
+    @Step("Checking reponse has list of orders in its body")
+    public static void hasListOfOrdersBody(Response response) {
+        response.then()
+                .body("$", not(empty()))
+                .body("$", aMapWithSize(3))
+                .body("orders", notNullValue())
+                .body("pageInfo", notNullValue())
+                .body("availableStations", notNullValue());
+    }
 }
