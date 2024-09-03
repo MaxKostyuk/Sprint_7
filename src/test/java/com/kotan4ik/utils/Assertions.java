@@ -50,4 +50,12 @@ public class Assertions {
                 .body("message", notNullValue())
                 .body("message", equalTo(expectedMessage));
     }
+
+    @Step("Checking response has order in its body")
+    public static void hasOrderBody(Response response) {
+        response.then()
+                .body("$", not(empty()))
+                .body("$", aMapWithSize(1))
+                .body("order", notNullValue());
+    }
 }

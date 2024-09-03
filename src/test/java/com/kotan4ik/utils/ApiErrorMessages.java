@@ -10,4 +10,5 @@ public class ApiErrorMessages {
     public static final String SEARCH_NOT_ENOUGH_DATA = "Недостаточно данных для поиска";
     public static final String COURIER_NOT_EXISTS = "Курьера с таким id не существует";
     public static final String ORDER_NOT_EXISTS = "Заказа с таким id не существует";
+    public static final String ORDER_NOT_FOUND = "Заказ не найден";
 }

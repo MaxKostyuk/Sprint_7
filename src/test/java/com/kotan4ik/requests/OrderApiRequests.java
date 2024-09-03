@@ -50,6 +50,13 @@ public class OrderApiRequests {
         return response;
     }
 
+    @Step("Getting order without track number")
+    public static Response getOrderWithoutTrack() {
+        Response response = RestAssured.given()
+                .get("orders/" + "track");
+        return response;
+    }
+
     @Step("Getting orderId by track number {track}")
     public static int getOrderIdByTrack(int track) {
         Response response = getOrderByTrack(track);
