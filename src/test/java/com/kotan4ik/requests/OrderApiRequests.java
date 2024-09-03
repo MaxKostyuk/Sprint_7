@@ -22,9 +22,23 @@ public class OrderApiRequests {
     @Step("Sending request to accept order {orderId} by courier {courierId}")
     public static Response acceptOrder(int orderId, int courierId) {
         Response response = RestAssured.given()
-                .log().all()
                 .queryParam("courierId", courierId)
                 .put("orders/accept/" + orderId);
+        return response;
+    }
+
+    @Step("Sending request to accept order {orderId} without courier")
+    public static Response acceptOrder(int orderId) {
+        Response response = RestAssured.given()
+                .put("orders/accept/" + orderId);
+        return response;
+    }
+
+    @Step("Sending request to accept order without order id")
+    public static Response acceptOrderWithoutOrderId(int courierId) {
+        Response response = RestAssured.given()
+                .queryParam("courierId", courierId)
+                .put("orders/accept/");
         return response;
     }
 
