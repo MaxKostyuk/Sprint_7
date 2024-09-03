@@ -59,7 +59,7 @@ public class Assertions {
                 .body("order", notNullValue());
     }
 
-    @Step("Checking reponse has list of orders in its body")
+    @Step("Checking response has list of orders in its body")
     public static void hasListOfOrdersBody(Response response) {
         response.then()
                 .body("$", not(empty()))
