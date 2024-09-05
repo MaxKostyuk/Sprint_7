@@ -6,13 +6,17 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 public class CourierApiMethods extends BaseApiConfig {
+
+    private static final String BASE_COURIER_URL = "courier/";
+    private static final String LOGIN_URL = "login";
+
     @Step("Sending request to create courier with login {login}, password {password} and name {name}")
     public static Response createCourier(String login, String password, String name) {
         Courier courier = new Courier(login, password, name);
         Response response = RestAssured.given()
                 .header("Content-type", "application/json")
                 .body(courier)
-                .post("courier/");
+                .post(BASE_COURIER_URL);
         return response;
     }
 
@@ -22,21 +26,21 @@ public class CourierApiMethods extends BaseApiConfig {
         Response response = RestAssured.given()
                 .header("Content-type", "application/json")
                 .body(courier)
-                .post("courier/" + "login");
+                .post(BASE_COURIER_URL + LOGIN_URL);
         return response;
     }
 
     @Step("Sending request to delete courier with id {id}")
     public static Response deleteCourier(int id) {
         Response response = RestAssured.given()
-                .delete("courier/" + id);
+                .delete(BASE_COURIER_URL + id);
         return response;
     }
 
     @Step("Sending request to delete courier without id")
     public static Response deleteCourier() {
         Response response = RestAssured.given()
-                .delete("courier/");
+                .delete(BASE_COURIER_URL);
         return response;
     }
 

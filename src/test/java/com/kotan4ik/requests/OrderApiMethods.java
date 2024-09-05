@@ -7,12 +7,17 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class OrderApiMethods extends BaseApiConfig {
+
+    private static final String BASE_ORDERS_URL = "orders/";
+    private static final String ACCEPT_ORDER_URL = "accept/";
+    private static final String TRACK_ORDER_URL = "track/";
+
     @Step("Sending request to create order {order}")
     public static Response createOrder(Order order) {
         Response response = RestAssured.given()
                 .header("Content-type", "application/json")
                 .body(order)
-                .post("orders/");
+                .post(BASE_ORDERS_URL);
         return response;
     }
 
@@ -20,14 +25,14 @@ public class OrderApiMethods extends BaseApiConfig {
     public static Response acceptOrder(int orderId, int courierId) {
         Response response = RestAssured.given()
                 .queryParam("courierId", courierId)
-                .put("orders/accept/" + orderId);
+                .put(BASE_ORDERS_URL + ACCEPT_ORDER_URL + orderId);
         return response;
     }
 
     @Step("Sending request to accept order {orderId} without courier")
     public static Response acceptOrder(int orderId) {
         Response response = RestAssured.given()
-                .put("orders/accept/" + orderId);
+                .put(BASE_ORDERS_URL + ACCEPT_ORDER_URL + orderId);
         return response;
     }
 
@@ -35,7 +40,7 @@ public class OrderApiMethods extends BaseApiConfig {
     public static Response acceptOrderWithoutOrderId(int courierId) {
         Response response = RestAssured.given()
                 .queryParam("courierId", courierId)
-                .put("orders/accept/");
+                .put(BASE_ORDERS_URL + ACCEPT_ORDER_URL);
         return response;
     }
 
@@ -43,14 +48,14 @@ public class OrderApiMethods extends BaseApiConfig {
     public static Response getOrderByTrack(int track) {
         Response response = RestAssured.given()
                 .queryParam("t", track)
-                .get("orders/" + "track");
+                .get(BASE_ORDERS_URL + TRACK_ORDER_URL);
         return response;
     }
 
     @Step("Getting order without track number")
     public static Response getOrderWithoutTrack() {
         Response response = RestAssured.given()
-                .get("orders/" + "track");
+                .get(BASE_ORDERS_URL + TRACK_ORDER_URL);
         return response;
     }
 
@@ -81,7 +86,7 @@ public class OrderApiMethods extends BaseApiConfig {
             request.queryParam("limit", limit);
         if (page != null)
             request.queryParam("page", page);
-        Response response = request.get("orders");
+        Response response = request.get(BASE_ORDERS_URL);
         return response;
     }
 }
