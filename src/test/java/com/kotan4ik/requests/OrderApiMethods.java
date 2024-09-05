@@ -6,11 +6,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class OrderApiMethods {
-    static {
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/api/v1/";
-    }
-
+public class OrderApiMethods extends BaseApiConfig {
     @Step("Sending request to create order {order}")
     public static Response createOrder(Order order) {
         Response response = RestAssured.given()

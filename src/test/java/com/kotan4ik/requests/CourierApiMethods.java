@@ -5,11 +5,7 @@ import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-public class CourierApiMethods {
-    static {
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru/api/v1/";
-    }
-
+public class CourierApiMethods extends BaseApiConfig {
     @Step("Sending request to create courier with login {login}, password {password} and name {name}")
     public static Response createCourier(String login, String password, String name) {
         Courier courier = new Courier(login, password, name);
