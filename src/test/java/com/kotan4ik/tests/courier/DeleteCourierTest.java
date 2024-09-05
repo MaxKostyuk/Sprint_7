@@ -1,5 +1,6 @@
 package com.kotan4ik.tests.courier;
 
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.AfterEach;
@@ -31,6 +32,7 @@ public class DeleteCourierTest {
     }
 
     @Test
+    @Description("Позитивный тест удаления курьера. Должен вернуть код 200 и тело \"true:ok\"")
     public void positiveTestShouldReturn200Ok() {
         Response response = deleteCourier(courierId);
         compareResponseCode(response, HttpStatus.SC_OK);
@@ -38,6 +40,7 @@ public class DeleteCourierTest {
     }
 
     @Test
+    @Description("Негативный тест удаления курьера. Передается запрос без id удаляемого курьера. Должен вернуть код 400 и тело с сообщением об ошибке")
     public void negativeTestWithoutIdShouldReturn400BadRequest() {
         Response response = deleteCourier();
         compareResponseCode(response, 400);
@@ -45,6 +48,7 @@ public class DeleteCourierTest {
     }
 
     @Test
+    @Description("Негативный тест удаления курьера. Передается запрос на удаление курьера с несуществующим id. Должен вернуть код 404 и тело с сообщением об ошибке")
     public void negativeTestShouldReturn404NotFound() {
         deleteCourier(courierId);
         Response response = deleteCourier(courierId);

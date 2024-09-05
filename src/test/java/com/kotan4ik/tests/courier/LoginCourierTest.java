@@ -1,5 +1,6 @@
 package com.kotan4ik.tests.courier;
 
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.AfterEach;
@@ -27,6 +28,7 @@ public class LoginCourierTest {
     }
 
     @Test
+    @Description("Позитивный тест логина курьера. Должен вернуть код 200 и тело с id курьера")
     public void positiveTestLoginCourierShouldReturn200AndCourierLogin() {
         Response response = loginCourier(CORRECT_LOGIN, CORRECT_PASSWORD);
         compareResponseCode(response, HttpStatus.SC_OK);
@@ -34,6 +36,7 @@ public class LoginCourierTest {
     }
 
     @Test
+    @Description("Негативный тест логина курьера. Передается запрос без логина. Должен вернуть код 400 и тело с сообщением об ошибке")
     public void negativeTestWithoutLoginShouldReturn400BadRequest() {
         Response response = loginCourier(null, CORRECT_PASSWORD);
         compareResponseCode(response, HttpStatus.SC_BAD_REQUEST);
@@ -41,6 +44,7 @@ public class LoginCourierTest {
     }
 
     @Test
+    @Description("Негативный тест логина курьера. Передается запрос без пароля. Должен вернуть код 400 и тело с сообщением об ошибке")
     public void negativeTestWithoutPasswordShouldReturn400BadRequest() {
         Response response = loginCourier(CORRECT_LOGIN, null);
         compareResponseCode(response, HttpStatus.SC_BAD_REQUEST);
@@ -48,6 +52,7 @@ public class LoginCourierTest {
     }
 
     @Test
+    @Description("Негативный тест логина курьера. Передается запрос с несуществующим логином. Должен вернуть код 404 и тело с сообщением об ошибке")
     public void negativeTestWithNotExistingLoginShouldReturn404NotFound() {
         deleteCourierByLoginAndPassword(CORRECT_LOGIN, CORRECT_PASSWORD);
         Response response = loginCourier(CORRECT_LOGIN, CORRECT_PASSWORD);
@@ -56,6 +61,7 @@ public class LoginCourierTest {
     }
 
     @Test
+    @Description("Негативный тест логина курьера. Передается запрос с неправильным паролем. Должен вернуть код 404 и тело с сообщением об ошибке")
     public void negativeTestWithIncorrectPasswordShouldReturn404NotFound() {
         Response response = loginCourier(CORRECT_LOGIN, CORRECT_PASSWORD + 1);
         compareResponseCode(response, HttpStatus.SC_NOT_FOUND);

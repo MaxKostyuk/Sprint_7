@@ -1,6 +1,7 @@
 package com.kotan4ik.tests.order;
 
 import com.kotan4ik.models.Order;
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.AfterEach;
@@ -31,6 +32,7 @@ public class AcceptOrderTest {
     }
 
     @Test
+    @Description("Позитивный тест принятия заказа курьером. Должен вернуть код 200 и тело \"true:ok\"")
     public void positiveTestShouldReturn200Ok() {
         Response response = acceptOrder(orderId, courierId);
         compareResponseCode(response, HttpStatus.SC_OK);
@@ -38,6 +40,7 @@ public class AcceptOrderTest {
     }
 
     @Test
+    @Description("Негативный тест принятия заказа курьером. Передается запрос без id курьера. Должен вернуть код 400 и тело с сообщением об ошибке")
     public void negativeTestWithoutCourierIdShouldReturn400BadRequest() {
         Response response = acceptOrder(orderId);
         compareResponseCode(response, HttpStatus.SC_BAD_REQUEST);
@@ -45,6 +48,7 @@ public class AcceptOrderTest {
     }
 
     @Test
+    @Description("Негативный тест принятия заказа курьером. Передается запрос без id заказа. Должен вернуть код 400 и тело с сообщением об ошибке")
     public void negativeTestWithoutOrderIdShouldReturn400BadRequest() {
         Response response = acceptOrderWithoutOrderId(courierId);
         compareResponseCode(response, HttpStatus.SC_BAD_REQUEST);
@@ -52,6 +56,7 @@ public class AcceptOrderTest {
     }
 
     @Test
+    @Description("Негативный тест принятия заказа курьером. Передается запрос с несуществующим id курьера. Должен вернуть код 404 и тело с сообщением об ошибке")
     public void negativeTestWithIncorrectCourierIdShouldReturn404NotFound() {
         deleteCourier(courierId);
         Response response = acceptOrder(orderId, courierId);
@@ -60,6 +65,7 @@ public class AcceptOrderTest {
     }
 
     @Test
+    @Description("Негативный тест принятия заказа курьером. Передается запрос с несуществующим id заказа. Должен вернуть код 404 и тело с сообщением об ошибке")
     public void negativeTestWithIncorrectOrderIdShouldReturn404NotFound() {
         Response response = acceptOrder(0, courierId);
         compareResponseCode(response, HttpStatus.SC_NOT_FOUND);

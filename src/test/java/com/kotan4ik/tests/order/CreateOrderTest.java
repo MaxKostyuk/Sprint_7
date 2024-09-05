@@ -2,6 +2,7 @@ package com.kotan4ik.tests.order;
 
 
 import com.kotan4ik.models.Order;
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,6 +19,8 @@ public class CreateOrderTest {
 
     @ParameterizedTest
     @MethodSource("colorProvider")
+    @Description("Позитивный тест создания заказа. Должен вернуть код 201 и тело с трек номером созданного заказа. " +
+            "Проверяется создание заказа с указанием каждого цвета, обоих цветов одновременно и без указания цвета")
     public void positiveTestShouldReturn200OkAndTrackNumber(List<String> colors) {
         Order order = Order.createDefaultCorrectOrder();
         order.setColor(colors);
