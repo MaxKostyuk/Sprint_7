@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Assertions {
 
@@ -29,7 +30,7 @@ public class Assertions {
                 .body("$", aMapWithSize(1))
                 .body("id", notNullValue());
         int id = response.then().extract().path("id");
-        assert id > 0;
+        assertTrue(id > 0);
     }
 
     @Step("Checking response body for create order contains track and track is positive")
@@ -39,7 +40,7 @@ public class Assertions {
                 .body("$", aMapWithSize(1))
                 .body("track", notNullValue());
         int id = response.then().extract().path("track");
-        assert id > 0;
+        assertTrue(id > 0);
     }
 
     @Step("Checking error message equals {expectedMessage}")
